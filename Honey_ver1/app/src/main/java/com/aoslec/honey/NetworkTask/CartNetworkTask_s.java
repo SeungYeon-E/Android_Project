@@ -4,7 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 
-import com.aoslec.honey.Bean.Cart;
+import com.aoslec.honey.Bean.Cart_s;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -16,21 +16,21 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class CartNetworkTask extends AsyncTask<Integer, String, Object> {
+public class CartNetworkTask_s extends AsyncTask<Integer, String, Object> {
 
     Context context = null;
     String mAddr = null;
     ProgressDialog progressDialog = null;
-    ArrayList<Cart> carts;
+    ArrayList<Cart_s> cartS;
 
     // Network Task를 검색, 입력, 수정, 삭제 구분없이 하나로 사용키 위해 생성자 변수 추가.
     String where = null;
 
-    public CartNetworkTask(Context context, String mAddr, String where) {
+    public CartNetworkTask_s(Context context, String mAddr, String where) {
         this.context = context;
         this.mAddr = mAddr;
-        this.carts = carts;
-        this.carts = new ArrayList<Cart>();
+        this.cartS = cartS;
+        this.cartS = new ArrayList<Cart_s>();
         this.where = where;
     }
 
@@ -101,7 +101,7 @@ public class CartNetworkTask extends AsyncTask<Integer, String, Object> {
             }
         }
         if (where.equals("select")){
-            return carts;
+            return cartS;
         }else {
             return result;
         }
@@ -121,7 +121,7 @@ public class CartNetworkTask extends AsyncTask<Integer, String, Object> {
         try{
             JSONObject jsonObject = new JSONObject(str);
             JSONArray jsonArray = new JSONArray(jsonObject.getString("carts_info"));
-            carts.clear();
+            cartS.clear();
 
             for (int i=0; i<jsonArray.length(); i++){
                 JSONObject jsonObject1 = (JSONObject) jsonArray.get(i);
@@ -131,12 +131,12 @@ public class CartNetworkTask extends AsyncTask<Integer, String, Object> {
                 String iName = jsonObject1.getString("iName");
                 String iCapacity = jsonObject1.getString("iCapacity");
                 String iUnit = jsonObject1.getString("iUnit");
-                String iPrice = jsonObject1.getString("iPrice");
+                int iPrice = jsonObject1.getInt("iPrice");
                 String mName = jsonObject1.getString("mName");
                 String mImagePath = jsonObject1.getString("mImagePath");
 
-                Cart cart = new Cart(cartCode, cartEA, iName, iCapacity, iUnit, iPrice, mName, mImagePath);
-                carts.add(cart);
+                Cart_s cartS = new Cart_s(cartCode, cartEA, iName, iCapacity, iUnit, iPrice, mName, mImagePath);
+                this.cartS.add(cartS);
             }
 
         }catch (Exception e){

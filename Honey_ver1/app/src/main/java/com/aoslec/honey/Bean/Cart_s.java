@@ -1,16 +1,16 @@
 package com.aoslec.honey.Bean;
 
-public class Cart {
+public class Cart_s {
     private int cartCode;
     private int cartEA;
     private String iName;
     private String iCapacity;
     private String iUnit;
-    private String iPrice;
+    private int iPrice;
     private String mName;
     private String mImagePath;
 
-    public Cart(int cartCode, int cartEA, String iName, String iCapacity, String iUnit, String iPrice, String mName, String mImagePath) {
+    public Cart_s(int cartCode, int cartEA, String iName, String iCapacity, String iUnit, int iPrice, String mName, String mImagePath) {
         this.cartCode = cartCode;
         this.cartEA = cartEA;
         this.iName = iName;
@@ -61,11 +61,11 @@ public class Cart {
         this.iUnit = iUnit;
     }
 
-    public String getiPrice() {
+    public int getiPrice() {
         return iPrice;
     }
 
-    public void setiPrice(String iPrice) {
+    public void setiPrice(int iPrice) {
         this.iPrice = iPrice;
     }
 

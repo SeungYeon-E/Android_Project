@@ -17,7 +17,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Honey">
-        <activity android:name=".Activity.CartActivity">
+        <activity android:name=".Activity.CartActivity_s">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
