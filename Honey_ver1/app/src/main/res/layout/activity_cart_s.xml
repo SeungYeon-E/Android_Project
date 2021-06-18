@@ -27,7 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:padding="10dp"
+            android:paddingHorizontal="10dp"
             android:visibility="visible"
             >
             <ProgressBar
@@ -44,7 +44,7 @@
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
+                android:paddingHorizontal="10dp"
                 >
                 <TextView
                     android:id="@+id/cart_delivery_tv_s"
@@ -115,6 +115,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingHorizontal="10dp"
+                    android:layout_marginTop="10dp"
                     >
                     <TextView
                         android:layout_width="0px"
@@ -140,7 +141,8 @@
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="10dp"
+                    android:paddingHorizontal="10dp"
+                    android:layout_marginTop="10dp"
                     >
                     <TextView
                         android:layout_width="0px"
@@ -170,6 +172,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
+                android:layout_margin="10dp"
                 android:text="배달 주문하기"
                 />
 

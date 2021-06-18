@@ -82,15 +82,19 @@
                     android:inputType="number"
                     android:maxLength="2"
                     android:gravity="center"
+                    android:enabled="false"
+                    android:textColor="@color/black"
                     />
 
 <!--                <Button-->
-<!--                    -->
-<!--                    android:layout_width="30dp"-->
-<!--                    android:layout_height="40dp"-->
+<!--                    android:layout_width="63dp"-->
+<!--                    android:layout_height="59dp"-->
+<!--                    android:background="@drawable/cart_plus_minus_button_s"-->
 <!--                    android:gravity="center"-->
-<!--                    android:text="+"-->
+<!--                    android:text="버튼"-->
+<!--                    android:textColor="@color/black"-->
 <!--                    />-->
+
                 <ImageButton
                     android:id="@+id/cart_ingredientPlus_btn_s"
                     android:layout_width="wrap_content"
@@ -99,6 +103,16 @@
                     android:src="@drawable/cart_plus_s"
                     android:background="@drawable/cart_plus_minus_button_s"
 
+                    />
+                <TextView
+                    android:id="@+id/cart_ingredientTotalPrice_tv_s"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Total Price"
+                    android:textSize="17dp"
+                    android:textStyle="bold"
+                    android:gravity="right"
+                    android:layout_marginRight="10dp"
                     />
             </LinearLayout>
 
