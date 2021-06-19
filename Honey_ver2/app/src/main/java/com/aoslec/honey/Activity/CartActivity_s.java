@@ -4,23 +4,20 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.SearchView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.aoslec.honey.Adapter.CartListviewAdapter_s;
 import com.aoslec.honey.Bean.Cart_s;
 import com.aoslec.honey.Common.CommonInfo_s;
+import com.aoslec.honey.Interface.CartClickListener_s;
 import com.aoslec.honey.NetworkTask.CartNetworkTask_s;
 import com.aoslec.honey.R;
 import com.aoslec.honey.Swife.SwipeDismissListViewTouchListener_s;
@@ -29,7 +26,7 @@ import com.google.android.material.snackbar.Snackbar;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
-public class CartActivity_s extends AppCompatActivity {
+public class CartActivity_s extends AppCompatActivity implements CartClickListener_s {
 
     String deleteResult, allDeleteResult;
     String urlAddr = null;
@@ -104,7 +101,6 @@ public class CartActivity_s extends AppCompatActivity {
     private void connectGetData(){
 
         urlAddr = CommonInfo_s.hostRootAddr + "Cart_All_List.jsp?" + "cId=" + CommonInfo_s.userID;
-        Log.v("message","url"+urlAddr);
 
         try{
             CartNetworkTask_s networkTask = new CartNetworkTask_s(CartActivity_s.this, urlAddr, "select");
@@ -117,7 +113,7 @@ public class CartActivity_s extends AppCompatActivity {
             }else {
                 falseLinearLayout.setVisibility(View.INVISIBLE);
                 falseLinearLayout.setVisibility(View.VISIBLE);
-                adapter = new CartListviewAdapter_s(CartActivity_s.this, R.layout.cart_card_layout_s, cartS);
+                adapter = new CartListviewAdapter_s(CartActivity_s.this, R.layout.cart_card_layout_s, cartS, this);
                 listView.setAdapter(adapter);
 
                 cart_priceResult_tv.setText(myFormatter.format(cartTotalPrice()) + "원");
@@ -184,7 +180,7 @@ public class CartActivity_s extends AppCompatActivity {
                             .setMessage("장바구니를 비우시겠습니까?")
                             .setCancelable(false)
                             .setNegativeButton("Cancel", null)
-                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            .setPositiveButton("Save", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     allDeleteResult = connectAllDeleteData();
@@ -199,6 +195,9 @@ public class CartActivity_s extends AppCompatActivity {
                             .show();
                     break;
                 case R.id.cart_deliveryOrder_btn_s:
+                    Intent intent = new Intent(CartActivity_s.this, BuyActivity_s.class);
+                    intent.putExtra("TotalPrice", cartTotalPrice());
+                    startActivity(intent);
                     break;
             }
         }
@@ -227,10 +226,14 @@ public class CartActivity_s extends AppCompatActivity {
         }catch (Exception e){
             e.printStackTrace();
         }
-        Log.v("message","url="+urlAddr+"result"+result);
         return result;
         //잘끝났으면 1 아니면 에러
     }
 
-
+    @Override
+    public void onCartClickAction(boolean isSelected) {
+        if(isSelected){
+            connectGetData();
+        }
+    }
 }

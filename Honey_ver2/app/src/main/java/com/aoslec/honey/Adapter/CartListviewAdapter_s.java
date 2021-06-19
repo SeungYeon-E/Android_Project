@@ -2,21 +2,18 @@ package com.aoslec.honey.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.aoslec.honey.Activity.CartActivity_s;
 import com.aoslec.honey.Bean.Cart_s;
 import com.aoslec.honey.Common.CommonInfo_s;
+import com.aoslec.honey.Interface.CartClickListener_s;
 import com.aoslec.honey.NetworkTask.CartNetworkTask_s;
 import com.aoslec.honey.R;
 import com.bumptech.glide.Glide;
@@ -35,12 +32,14 @@ public class CartListviewAdapter_s extends BaseAdapter {
     String urlAddr;
     int EA;
     DecimalFormat myFormatter = new DecimalFormat("###,###");
+    private CartClickListener_s cartClickListener;
 
-    public CartListviewAdapter_s(Context mContext, int layout, ArrayList<Cart_s> data) {
+    public CartListviewAdapter_s(Context mContext, int layout, ArrayList<Cart_s> data, CartClickListener_s cartClickListener) {
         this.mContext = mContext;
         this.layout = layout;
         this.data = data;
         this.inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        this.cartClickListener = cartClickListener;
     }
 
     @Override
@@ -94,6 +93,7 @@ public class CartListviewAdapter_s extends BaseAdapter {
                     EA -= 1;
                     et_cartEA.setText(String.valueOf(EA));
                     connectEAData((Integer) cart_ingredientMinus_btn.getTag(), EA);
+                    cartClickListener.onCartClickAction(true);
                 }
 
             }
@@ -110,7 +110,7 @@ public class CartListviewAdapter_s extends BaseAdapter {
                     EA += 1;
                     et_cartEA.setText(String.valueOf(EA));
                     connectEAData((Integer) cart_ingredientPlus_btn.getTag(), EA);
-                    CartActivity_s activity_s = new CartActivity_s();
+                    cartClickListener.onCartClickAction(true);
                 }
             }
         });
@@ -127,7 +127,6 @@ public class CartListviewAdapter_s extends BaseAdapter {
         }catch (Exception e){
             e.printStackTrace();
         }
-        Log.v("message","url="+urlAddr+"result"+result);
         return result;
         //잘끝났으면 1 아니면 에러
     }
