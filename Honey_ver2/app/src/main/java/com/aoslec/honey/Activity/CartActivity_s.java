@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -101,6 +102,8 @@ public class CartActivity_s extends AppCompatActivity implements CartClickListen
     private void connectGetData(){
 
         urlAddr = CommonInfo_s.hostRootAddr + "Cart_All_List.jsp?" + "cId=" + CommonInfo_s.userID;
+        Log.v("message","url = " + urlAddr);
+
 
         try{
             CartNetworkTask_s networkTask = new CartNetworkTask_s(CartActivity_s.this, urlAddr, "select");
