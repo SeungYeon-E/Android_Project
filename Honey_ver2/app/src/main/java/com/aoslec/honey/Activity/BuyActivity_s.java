@@ -29,9 +29,10 @@ public class BuyActivity_s extends AppCompatActivity {
 
     String urlAddr = null;
     ArrayList<UserAddress_s> userAddr;
+    Intent intent;
 
     int iTotalPrice;
-    EditText buy_address1_et, buy_address2_et, buy_postNum_et;
+    EditText buy_address1_et, buy_address2_et, buy_postNum_et, buy_Requests_et;
     Button buy_postNum_btn, buy_deliveryOrder_btn;
     RadioGroup radioGroup;
     TextView buy_priceResult_tv, buy_deliveryTip_tv, buy_deliveryPrice_tv;
@@ -44,12 +45,13 @@ public class BuyActivity_s extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buy_s);
 
-        Intent intent = getIntent();
+        intent = getIntent();
         iTotalPrice = intent.getIntExtra("TotalPrice", 0);
 
         buy_postNum_et = findViewById(R.id.buy_postNum_et_s);
         buy_address1_et = findViewById(R.id.buy_address1_et_s);
         buy_address2_et = findViewById(R.id.buy_address2_et_s);
+        buy_Requests_et = findViewById(R.id.buy_Requests_et_s);
         buy_postNum_btn = findViewById(R.id.buy_postNum_btn_s);
 
         radioGroup = findViewById(R.id.buy_payment_rg_s);
@@ -66,9 +68,11 @@ public class BuyActivity_s extends AppCompatActivity {
         if(iTotalPrice>10000 && iTotalPrice<30000){
             buy_deliveryPrice_tv.setText(myFormatter.format(iTotalPrice + 3000) + "원");
             buy_deliveryTip_tv.setText("3,000원");
+            intent.putExtra("TotalOrderPrice", (iTotalPrice+3000));
         }else {
             buy_deliveryPrice_tv.setText(myFormatter.format(iTotalPrice) + "원");
             buy_deliveryTip_tv.setText("무료배송");
+            intent.putExtra("TotalOrderPrice", iTotalPrice);
         }
 
         buy_postNum_btn.setOnClickListener(new View.OnClickListener() {
@@ -78,6 +82,7 @@ public class BuyActivity_s extends AppCompatActivity {
                 startActivityForResult(intent, SEARCH_ADDRESS_ACTIVITY);
             }
         });
+        connectGetData();
     }
     public void onActivityResult(int requestCode, int resultCode, Intent intent){
         super.onActivityResult(requestCode, resultCode, intent);
@@ -103,6 +108,12 @@ public class BuyActivity_s extends AppCompatActivity {
                 buy_address2_et.requestFocus();
             }else if (radioButton.getId() == R.id.buy_card_rb_s){
                 Snackbar.make(v, "카드결제!", Snackbar.LENGTH_SHORT).show();
+                intent = new Intent(BuyActivity_s.this, BuyActivity_s.class);//수정필요
+                intent.putExtra("BuyPostNum", buy_postNum_et.getText());
+                intent.putExtra("BuyAddress1", buy_address1_et.getText());
+                intent.putExtra("BuyAddress2", buy_address2_et.getText());
+                intent.putExtra("BuyRequests", buy_Requests_et.getText());
+                startActivity(intent);
             }else if (radioButton.getId() == R.id.buy_noBankBook_rb_s){
                 Snackbar.make(v, "무통장입금!", Snackbar.LENGTH_SHORT).show();
             }
@@ -112,7 +123,7 @@ public class BuyActivity_s extends AppCompatActivity {
     //수정되면 또 실행함 꼭 필요
     protected void onResume() {
         super.onResume();
-        connectGetData();
+//        connectGetData();
     }
 
     private void connectGetData(){
