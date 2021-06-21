@@ -7,20 +7,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activity.BuyActivity_s"
-    android:padding="10dp"
+    android:padding="15dp"
     >
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Buy cart items!"
         android:textSize="25dp"
+        android:layout_marginLeft="10dp"
         android:layout_marginBottom="10dp"
         />
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="0px"
-        android:layout_weight="1.2"
+        android:layout_weight="1.3"
         android:padding="10dp"
         android:background="#129A9A9A"
         android:layout_marginBottom="10dp"
@@ -33,6 +34,7 @@
             android:text="배달정보"
             android:textStyle="bold"
             android:textSize="20dp"
+            android:layout_marginBottom="10dp"
             />
         <LinearLayout
             android:orientation="horizontal"
@@ -79,7 +81,7 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="0px"
-        android:layout_weight="0.6"
+        android:layout_weight="0.7"
         android:padding="10dp"
         android:background="#129A9A9A"
         android:layout_marginBottom="10dp"
@@ -91,6 +93,7 @@
             android:text="요청사항"
             android:textStyle="bold"
             android:textSize="20dp"
+            android:layout_marginBottom="10dp"
             />
 
         <EditText
@@ -107,7 +110,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0px"
-        android:layout_weight="1"
+        android:layout_weight="1.1"
         android:orientation="vertical"
         android:padding="10dp"
         android:background="#129A9A9A"
@@ -119,6 +122,7 @@
             android:text="결제수단"
             android:textStyle="bold"
             android:textSize="20dp"
+            android:layout_marginBottom="10dp"
 
             />
         <RadioGroup
@@ -149,6 +153,7 @@
         android:layout_height="0px"
         android:layout_weight="1"
         android:gravity="center"
+        android:layout_marginTop="20dp"
         >
         <LinearLayout
             android:orientation="horizontal"
@@ -156,6 +161,7 @@
             android:layout_height="wrap_content"
             android:paddingHorizontal="10dp"
             android:layout_marginTop="10dp"
+
             >
 
             <TextView

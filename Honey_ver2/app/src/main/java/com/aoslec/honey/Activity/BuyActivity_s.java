@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -108,14 +109,20 @@ public class BuyActivity_s extends AppCompatActivity {
                 buy_address2_et.requestFocus();
             }else if (radioButton.getId() == R.id.buy_card_rb_s){
                 Snackbar.make(v, "카드결제!", Snackbar.LENGTH_SHORT).show();
-                intent = new Intent(BuyActivity_s.this, BuyActivity_s.class);//수정필요
+//                intent = new Intent(BuyActivity_s.this, BuyActivity_s.class);//수정필요
+//                intent.putExtra("BuyPostNum", buy_postNum_et.getText());
+//                intent.putExtra("BuyAddress1", buy_address1_et.getText());
+//                intent.putExtra("BuyAddress2", buy_address2_et.getText());
+//                intent.putExtra("BuyRequests", buy_Requests_et.getText());
+//                startActivity(intent);
+            }else if (radioButton.getId() == R.id.buy_noBankBook_rb_s){
+//                Snackbar.make(v, "무통장입금!", Snackbar.LENGTH_SHORT).show();
+                intent = new Intent(BuyActivity_s.this, BuyNoBankBookActivity_s.class);
                 intent.putExtra("BuyPostNum", buy_postNum_et.getText());
                 intent.putExtra("BuyAddress1", buy_address1_et.getText());
                 intent.putExtra("BuyAddress2", buy_address2_et.getText());
                 intent.putExtra("BuyRequests", buy_Requests_et.getText());
                 startActivity(intent);
-            }else if (radioButton.getId() == R.id.buy_noBankBook_rb_s){
-                Snackbar.make(v, "무통장입금!", Snackbar.LENGTH_SHORT).show();
             }
         }
     };
@@ -127,6 +134,24 @@ public class BuyActivity_s extends AppCompatActivity {
     }
 
     private void connectGetData(){
+
+        urlAddr = CommonInfo_s.hostRootAddr + "User_Address_Info.jsp?" + "cId=" + CommonInfo_s.userID;
+        Log.v("message","url = " + urlAddr);
+
+        try{
+            UserAddressNetworkTask_s networkTask = new UserAddressNetworkTask_s(BuyActivity_s.this, urlAddr, "select");
+            Object obj = networkTask.execute().get();
+            userAddr = (ArrayList<UserAddress_s>) obj;
+
+            buy_postNum_et.setText(userAddr.get(0).getcPostNum());
+            buy_address1_et.setText(userAddr.get(0).getcAddress1());
+            buy_address2_et.setText(userAddr.get(0).getcAddress2());
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+    private void connectInsertData(){
 
         urlAddr = CommonInfo_s.hostRootAddr + "User_Address_Info.jsp?" + "cId=" + CommonInfo_s.userID;
         Log.v("message","url = " + urlAddr);
