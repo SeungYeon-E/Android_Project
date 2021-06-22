@@ -89,6 +89,7 @@ public class BuyNoBankBookActivity_s extends AppCompatActivity {
                 case R.id.noBankBook_orderDetail_btn_s:
                     Intent intent = new Intent(BuyNoBankBookActivity_s.this, PaymentHistoryActivity_s.class);
                     startActivity(intent);
+                    finish();
                     break;
                 case R.id.noBankBook_shopping_btn_s:
                     break;

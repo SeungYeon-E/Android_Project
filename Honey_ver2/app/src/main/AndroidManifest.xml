@@ -18,7 +18,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Honey"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activity.PaymentHistoryActivity_s"></activity>
+        <activity android:name=".Activity.PaymentDetailActivity_s"></activity>
+        <activity android:name=".Activity.PaymentHistoryActivity_s" />
         <activity android:name=".Activity.BuyNoBankBookActivity_s" />
         <activity
             android:name=".Activity.AddressAPIActivity_s"

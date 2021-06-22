@@ -126,7 +126,6 @@ public class BuyActivity_s extends AppCompatActivity {
                 String buyNumber = getTime();
                 String InsertResult = connectInsertData(buyNumber);
                 if(InsertResult.length()>=1){
-                    Log.v("message","result = " + InsertResult);
                     intent = new Intent(BuyActivity_s.this, BuyNoBankBookActivity_s.class);
                     intent.putExtra("BuyPriceResult", buy_priceResult_tv.getText());
                     intent.putExtra("BuyDeliveryTip", buy_deliveryTip_tv.getText());

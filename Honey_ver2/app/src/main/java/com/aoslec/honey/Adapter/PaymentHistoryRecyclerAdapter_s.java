@@ -2,6 +2,7 @@ package com.aoslec.honey.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.aoslec.honey.Activity.PaymentDetailActivity_s;
 import com.aoslec.honey.Activity.PaymentHistoryActivity_s;
 import com.aoslec.honey.Bean.PaymentHistory_s;
 import com.aoslec.honey.R;
@@ -49,14 +51,9 @@ public class PaymentHistoryRecyclerAdapter_s extends RecyclerView.Adapter<Paymen
                 public void onClick(View v) {
                     int position = getAdapterPosition();
                     if(position != RecyclerView.NO_POSITION){
-//                        intent = new Intent(v.getContext(), ContentActivity.class);
-//                        intent.putExtra("id", data.get(position).getId());
-//                        intent.putExtra("name", data.get(position).getName());
-//                        intent.putExtra("phone", data.get(position).getPhone());
-//                        intent.putExtra("address", data.get(position).getAddress());
-//                        intent.putExtra("email", data.get(position).getEmail());
-//                        intent.putExtra("image", data.get(position).getImage());
-//                        v.getContext().startActivity(intent);
+                        intent = new Intent(v.getContext(), PaymentDetailActivity_s.class);
+                        intent.putExtra("BuyNum", data.get(position).getBuyNum());
+                        v.getContext().startActivity(intent);
                     }
                 }
             });
@@ -81,7 +78,16 @@ public class PaymentHistoryRecyclerAdapter_s extends RecyclerView.Adapter<Paymen
         holder.payment_history_buyAll_tv.setText(data.get(position).getiName() + data.get(position).getiCapacity()
                 + data.get(position).getiUnit() + " 외 " + count + "개");
         holder.payment_history_buyPrice_tv.setText("금액 : " + data.get(position).getBuyDeliveryPrice());
-        holder.payment_history_payment_tv.setText(data.get(position).getBuyDay());
+        holder.payment_history_payment_tv.setText("주문일자 : " + data.get(position).getBuyDay());
+
+//        if (data.get(position).getBuyCencelDay() != null){
+//            holder.payment_history_payment_tv.setText("주문일자 : " + data.get(position).getBuyDay());
+//            holder.payment_history_payment_tv.setTextColor(0xFF000000);
+//        } else {
+//            holder.payment_history_payment_tv.setText("취소일자 : " + data.get(position).getBuyCencelDay());
+//            holder.payment_history_payment_tv.setTextColor(0xFFFF0000);
+//        }
+
     }
 
     @Override

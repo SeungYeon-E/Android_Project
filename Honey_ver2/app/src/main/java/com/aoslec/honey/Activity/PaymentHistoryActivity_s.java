@@ -50,6 +50,7 @@ public class PaymentHistoryActivity_s extends AppCompatActivity {
         try{
 
             urlAddr = CommonInfo_s.hostRootAddr + "Payment_History_Select_Info.jsp?Client_cId=" + CommonInfo_s.userID;
+
             PaymentHistoryNetworkTask_s networkTask = new PaymentHistoryNetworkTask_s(PaymentHistoryActivity_s.this, urlAddr, "select");
             Object obj = networkTask.execute().get();
             history = (ArrayList<PaymentHistory_s>) obj;

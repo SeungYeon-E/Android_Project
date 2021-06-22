@@ -5,19 +5,29 @@ public class PaymentHistory_s {
     String buyNum;
     String buyDeliveryPrice;
     String buyDay;
+    String buyCencelDay;
     String iName;
     String iCapacity;
     String iUnit;
     String count;
 
-    public PaymentHistory_s(String buyNum, String buyDeliveryPrice, String buyDay, String iName, String iCapacity, String iUnit, String count) {
+    public PaymentHistory_s(String buyNum, String buyDeliveryPrice, String buyDay, String buyCencelDay, String iName, String iCapacity, String iUnit, String count) {
         this.buyNum = buyNum;
         this.buyDeliveryPrice = buyDeliveryPrice;
         this.buyDay = buyDay;
+        this.buyCencelDay = buyCencelDay;
         this.iName = iName;
         this.iCapacity = iCapacity;
         this.iUnit = iUnit;
         this.count = count;
+    }
+
+    public String getBuyCencelDay() {
+        return buyCencelDay;
+    }
+
+    public void setBuyCencelDay(String buyCencelDay) {
+        this.buyCencelDay = buyCencelDay;
     }
 
     public String getBuyNum() {

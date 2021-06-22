@@ -131,12 +131,13 @@ public class PaymentHistoryNetworkTask_s extends AsyncTask<Integer, String, Obje
                 String buyNum = jsonObject1.getString("buyNum");
                 String buyDeliveryPrice = jsonObject1.getString("buyDeliveryPrice");
                 String buyDay = jsonObject1.getString("buyDay");
+                String buyCencelDay = jsonObject1.getString("buyCencelDay");
                 String iName = jsonObject1.getString("iName");
                 String iCapacity = jsonObject1.getString("iCapacity");
                 String iUnit = jsonObject1.getString("iUnit");
                 String count = jsonObject1.getString("count");
 
-                PaymentHistory_s pay = new PaymentHistory_s(buyNum, buyDeliveryPrice, buyDay, iName, iCapacity, iUnit, count);
+                PaymentHistory_s pay = new PaymentHistory_s(buyNum, buyDeliveryPrice, buyDay, buyCencelDay, iName, iCapacity, iUnit, count);
                 paymentHistory.add(pay);
             }
 
