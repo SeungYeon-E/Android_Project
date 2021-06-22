@@ -24,7 +24,9 @@ import com.aoslec.honey.R;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class BuyActivity_s extends AppCompatActivity {
 
@@ -38,6 +40,9 @@ public class BuyActivity_s extends AppCompatActivity {
     RadioGroup radioGroup;
     TextView buy_priceResult_tv, buy_deliveryTip_tv, buy_deliveryPrice_tv;
     DecimalFormat myFormatter = new DecimalFormat("###,###");
+    SimpleDateFormat mFormat = new SimpleDateFormat("yyyyMMdd-hhmmss");
+    long mNow;
+    Date mDate;
 
     private static final int SEARCH_ADDRESS_ACTIVITY = 10000;
 
@@ -94,6 +99,8 @@ public class BuyActivity_s extends AppCompatActivity {
                     if (data != null) {
                         buy_postNum_et.setText(data.substring(0,5));
                         buy_address1_et.setText(data.substring(7));
+                        buy_address2_et.setText(null);
+                        buy_address2_et.requestFocus();
                     }
                 }
                 break;
@@ -116,13 +123,21 @@ public class BuyActivity_s extends AppCompatActivity {
 //                intent.putExtra("BuyRequests", buy_Requests_et.getText());
 //                startActivity(intent);
             }else if (radioButton.getId() == R.id.buy_noBankBook_rb_s){
-//                Snackbar.make(v, "무통장입금!", Snackbar.LENGTH_SHORT).show();
-                intent = new Intent(BuyActivity_s.this, BuyNoBankBookActivity_s.class);
-                intent.putExtra("BuyPostNum", buy_postNum_et.getText());
-                intent.putExtra("BuyAddress1", buy_address1_et.getText());
-                intent.putExtra("BuyAddress2", buy_address2_et.getText());
-                intent.putExtra("BuyRequests", buy_Requests_et.getText());
-                startActivity(intent);
+                String buyNumber = getTime();
+                String InsertResult = connectInsertData(buyNumber);
+                if(InsertResult.length()>=1){
+                    Log.v("message","result = " + InsertResult);
+                    intent = new Intent(BuyActivity_s.this, BuyNoBankBookActivity_s.class);
+                    intent.putExtra("BuyPriceResult", buy_priceResult_tv.getText());
+                    intent.putExtra("BuyDeliveryTip", buy_deliveryTip_tv.getText());
+                    intent.putExtra("BuyDeliveryPrice", buy_deliveryPrice_tv.getText());
+                    intent.putExtra("BuyNumber", buyNumber);
+                    startActivity(intent);
+                    finish();
+                }else{
+                    Snackbar.make(v, "주문을 실패했습니다.", Snackbar.LENGTH_SHORT).show();
+                }
+
             }
         }
     };
@@ -130,13 +145,11 @@ public class BuyActivity_s extends AppCompatActivity {
     //수정되면 또 실행함 꼭 필요
     protected void onResume() {
         super.onResume();
-//        connectGetData();
     }
 
     private void connectGetData(){
 
         urlAddr = CommonInfo_s.hostRootAddr + "User_Address_Info.jsp?" + "cId=" + CommonInfo_s.userID;
-        Log.v("message","url = " + urlAddr);
 
         try{
             UserAddressNetworkTask_s networkTask = new UserAddressNetworkTask_s(BuyActivity_s.this, urlAddr, "select");
@@ -151,22 +164,30 @@ public class BuyActivity_s extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-    private void connectInsertData(){
 
-        urlAddr = CommonInfo_s.hostRootAddr + "User_Address_Info.jsp?" + "cId=" + CommonInfo_s.userID;
-        Log.v("message","url = " + urlAddr);
+    private String connectInsertData(String buyNum){
 
-        try{
-            UserAddressNetworkTask_s networkTask = new UserAddressNetworkTask_s(BuyActivity_s.this, urlAddr, "select");
+        urlAddr = CommonInfo_s.hostRootAddr + "Buy_Order_Insert_Return.jsp?" + "Client_cId=" + CommonInfo_s.userID
+                + "&buyNum=" + buyNum + "&buyPostNum=" + buy_postNum_et.getText() + "&buyAddress1=" + buy_address1_et.getText()
+                + "&buyAddress2=" + buy_address2_et.getText() + "&buyRequests=" + buy_Requests_et.getText()
+                + "&buyDeliveryPrice=" + buy_deliveryPrice_tv.getText();
+
+        String result = null;
+        try {
+            CartNetworkTask_s networkTask = new CartNetworkTask_s(BuyActivity_s.this, urlAddr, "insert");
             Object obj = networkTask.execute().get();
-            userAddr = (ArrayList<UserAddress_s>) obj;
-
-            buy_postNum_et.setText(userAddr.get(0).getcPostNum());
-            buy_address1_et.setText(userAddr.get(0).getcAddress1());
-            buy_address2_et.setText(userAddr.get(0).getcAddress2());
+            result = (String) obj;
 
         }catch (Exception e){
             e.printStackTrace();
         }
+        return result;
+        //잘끝났으면 1 아니면 에러
+    }
+
+    private String getTime(){
+        mNow = System.currentTimeMillis();
+        mDate = new Date(mNow);
+        return mFormat.format(mDate);
     }
 }

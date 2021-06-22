@@ -102,8 +102,6 @@ public class CartActivity_s extends AppCompatActivity implements CartClickListen
     private void connectGetData(){
 
         urlAddr = CommonInfo_s.hostRootAddr + "Cart_All_List.jsp?" + "cId=" + CommonInfo_s.userID;
-        Log.v("message","url = " + urlAddr);
-
 
         try{
             CartNetworkTask_s networkTask = new CartNetworkTask_s(CartActivity_s.this, urlAddr, "select");
@@ -124,16 +122,19 @@ public class CartActivity_s extends AppCompatActivity implements CartClickListen
 
                 if (cartTotalPrice()<10000){
                     cart_delivery_tv.setText(myFormatter.format(10000-cartTotalPrice())+"원 더 담아주세용");
+                    cart_delivery_tv.setTextColor(0xFFFF0000);
                     cart_deliveryOrder_btn.setEnabled(false);
                     cart_deliveryOrder_btn.setText("최소 주문 금액을 채워주세요");
                     cart_deliveryTip_tv.setText("3,000원");
                 }else if(cartTotalPrice()>10000 && cartTotalPrice()<30000){
                     cart_delivery_tv.setText(myFormatter.format(30000-cartTotalPrice())+"원 더 담으면 무료배송");
+                    cart_delivery_tv.setTextColor(0xFF0000FF);
                     cart_deliveryOrder_btn.setEnabled(true);
                     cart_deliveryOrder_btn.setText(cartTotalEA() + "개 " + myFormatter.format(cartTotalPrice()+3000) + "원 주문하러 가기");
                     cart_deliveryTip_tv.setText("3,000원");
                 }else {
                     cart_delivery_tv.setText("무료배송");
+                    cart_delivery_tv.setTextColor(0xFF000000);
                     cart_deliveryOrder_btn.setEnabled(true);
                     cart_deliveryOrder_btn.setText(cartTotalEA() + "개 " + myFormatter.format(cartTotalPrice()) + "원 주문하러 가기");
                     cart_deliveryTip_tv.setText("무료배송");
