@@ -18,8 +18,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Honey"
         android:usesCleartextTraffic="true">
-        <!--다음 API 추가-->
-        <activity android:name=".Activity.PaymentDetailActivity_s"></activity>
+        <activity android:name=".Activity.GoogleMapAPIActivity_s"></activity>
+        <!-- 다음 주소 API 추가 -->
+        <!-- 구글 맵 API 추가 -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAODPsLD59tvTbu29yNaqSwbJ7jp86pG8M" />
+
+        <activity android:name=".Activity.PaymentDetailActivity_s" />
         <activity android:name=".Activity.PaymentHistoryActivity_s" />
         <activity android:name=".Activity.BuyNoBankBookActivity_s" />
         <activity

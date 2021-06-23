@@ -78,15 +78,15 @@ public class PaymentHistoryRecyclerAdapter_s extends RecyclerView.Adapter<Paymen
         holder.payment_history_buyAll_tv.setText(data.get(position).getiName() + data.get(position).getiCapacity()
                 + data.get(position).getiUnit() + " 외 " + count + "개");
         holder.payment_history_buyPrice_tv.setText("금액 : " + data.get(position).getBuyDeliveryPrice());
-        holder.payment_history_payment_tv.setText("주문일자 : " + data.get(position).getBuyDay());
+//        holder.payment_history_payment_tv.setText("주문일자 : " + data.get(position).getBuyDay());
 
-//        if (data.get(position).getBuyCencelDay() != null){
-//            holder.payment_history_payment_tv.setText("주문일자 : " + data.get(position).getBuyDay());
-//            holder.payment_history_payment_tv.setTextColor(0xFF000000);
-//        } else {
-//            holder.payment_history_payment_tv.setText("취소일자 : " + data.get(position).getBuyCencelDay());
-//            holder.payment_history_payment_tv.setTextColor(0xFFFF0000);
-//        }
+        if (data.get(position).getBuyCencelDay().equals("null")){
+            holder.payment_history_payment_tv.setText("주문일자 : " + data.get(position).getBuyDay());
+            holder.payment_history_payment_tv.setTextColor(0xFF000000);
+        } else {
+            holder.payment_history_payment_tv.setText("취소일자 : " + data.get(position).getBuyCencelDay());
+            holder.payment_history_payment_tv.setTextColor(0xFFFF0000);
+        }
 
     }
 

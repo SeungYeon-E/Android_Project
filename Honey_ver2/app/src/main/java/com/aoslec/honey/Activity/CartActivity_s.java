@@ -208,8 +208,7 @@ public class CartActivity_s extends AppCompatActivity implements CartClickListen
 
                 case R.id.cart_goBack_btn_s:
                     //수정해야대애애!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                    Intent intent1 = new Intent(CartActivity_s.this, PaymentHistoryActivity_s.class);
-                    intent1.putExtra("TotalPrice", cartTotalPrice());
+                    Intent intent1 = new Intent(CartActivity_s.this, GoogleMapAPIActivity_s.class);
                     startActivity(intent1);
                     break;
             }
