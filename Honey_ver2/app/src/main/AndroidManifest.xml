@@ -18,6 +18,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Honey"
         android:usesCleartextTraffic="true">
+        <!--다음 API 추가-->
         <activity android:name=".Activity.PaymentDetailActivity_s"></activity>
         <activity android:name=".Activity.PaymentHistoryActivity_s" />
         <activity android:name=".Activity.BuyNoBankBookActivity_s" />

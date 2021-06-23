@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -45,5 +46,7 @@ public class AddressAPIActivity_s extends AppCompatActivity {
         });
 
         browser.loadUrl(CommonInfo_s.hostRootAddr + "addr/daum.html");
+
+        Log.v("message", "view : " + CommonInfo_s.hostRootAddr + "addr/daum.html");
     }
 }

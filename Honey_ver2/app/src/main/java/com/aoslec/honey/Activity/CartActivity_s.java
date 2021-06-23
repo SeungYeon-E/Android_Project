@@ -37,7 +37,7 @@ public class CartActivity_s extends AppCompatActivity implements CartClickListen
     LinearLayout trueLinearLayout, falseLinearLayout;
     TextView cart_priceResult_tv, cart_delivery_tv, cart_deliveryTip_tv;
     ImageButton cart_deliveryTip_ib;
-    Button cart_allDel_btn, cart_deliveryOrder_btn;
+    Button cart_allDel_btn, cart_deliveryOrder_btn, cart_goBack_btn;
     DecimalFormat myFormatter = new DecimalFormat("###,###");
     ProgressBar cart_priceResult_pb;
 
@@ -58,6 +58,7 @@ public class CartActivity_s extends AppCompatActivity implements CartClickListen
         cart_deliveryTip_ib = findViewById(R.id.cart_deliveryTip_ib_s);
         cart_allDel_btn = findViewById(R.id.cart_allDel_btn_s);
         cart_deliveryOrder_btn = findViewById(R.id.cart_deliveryOrder_btn_s);
+        cart_goBack_btn = findViewById(R.id.cart_goBack_btn_s);
 
         SwipeDismissListViewTouchListener_s touchListener =
                 new SwipeDismissListViewTouchListener_s(listView,
@@ -90,6 +91,7 @@ public class CartActivity_s extends AppCompatActivity implements CartClickListen
         cart_deliveryTip_ib.setOnClickListener(onClickListener);
         cart_allDel_btn.setOnClickListener(onClickListener);
         cart_deliveryOrder_btn.setOnClickListener(onClickListener);
+        cart_goBack_btn.setOnClickListener(onClickListener);
 
     }
 
@@ -202,6 +204,13 @@ public class CartActivity_s extends AppCompatActivity implements CartClickListen
                     Intent intent = new Intent(CartActivity_s.this, BuyActivity_s.class);
                     intent.putExtra("TotalPrice", cartTotalPrice());
                     startActivity(intent);
+                    break;
+
+                case R.id.cart_goBack_btn_s:
+                    //수정해야대애애!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                    Intent intent1 = new Intent(CartActivity_s.this, PaymentHistoryActivity_s.class);
+                    intent1.putExtra("TotalPrice", cartTotalPrice());
+                    startActivity(intent1);
                     break;
             }
         }
