@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.PaymentDetailActivity_s"
+    android:padding="10dp"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="20dp"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Payment Detail"
+            android:textSize="25dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            />
+
+        <Button
+            android:id="@+id/payment_Detail_cancel_btn_s"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:text="취소하기" />
+
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/payment_Detail_day_tv_s"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="주문일자"
+        android:textSize="20dp"
+        android:layout_margin="10dp"
+        />
+    <TextView
+        android:id="@+id/payment_Detail_buyNum_tv_s"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="주문번호"
+        android:textSize="20dp"
+        android:layout_margin="10dp"
+        />
+    <TextView
+        android:id="@+id/payment_Detail_address_tv_s"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="주소"
+        android:textSize="20dp"
+        android:layout_margin="10dp"
+        />
+    <TextView
+        android:id="@+id/payment_Detail_request_tv_s"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="요청사항"
+        android:textSize="20dp"
+        android:layout_margin="10dp"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="주문 내역"
+        android:layout_margin="10dp"
+        android:textSize="20dp"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/payment_Detail_recycler_view_s"
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_weight="1"
+        android:layout_margin="10dp" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <TextView
+            android:id="@+id/payment_Detail_status_tv_s"
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.3"
+            android:text="주문 현황"
+            android:textSize="20dp"
+            android:layout_margin="10dp"
+            />
+
+        <TextView
+            android:id="@+id/payment_Detail_result_tv_s"
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="주문 총합"
+            android:textSize="20dp"
+            android:layout_margin="10dp"
+            android:gravity="right"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>
