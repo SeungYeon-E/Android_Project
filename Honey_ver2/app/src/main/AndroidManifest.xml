@@ -6,7 +6,6 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
@@ -18,12 +17,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Honey"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activity.GoogleMapAPIActivity_s"></activity>
+        <activity android:name=".Activity.GoogleMapAPIActivity_s" />
         <!-- 다음 주소 API 추가 -->
         <!-- 구글 맵 API 추가 -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="YOUR_KEY" />
+            android:value="AIzaSyAODPsLD59tvTbu29yNaqSwbJ7jp86pG8M" />
 
         <activity android:name=".Activity.PaymentDetailActivity_s" />
         <activity android:name=".Activity.PaymentHistoryActivity_s" />

@@ -3,6 +3,7 @@ package com.aoslec.honey.NetworkTask;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.aoslec.honey.Bean.Cart_s;
 
@@ -72,6 +73,7 @@ public class CartNetworkTask_s extends AsyncTask<Integer, String, Object> {
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
             httpURLConnection.setConnectTimeout(10000);
             if(httpURLConnection.getResponseCode() == HttpURLConnection.HTTP_OK){
+
                 inputStream = httpURLConnection.getInputStream();
                 inputStreamReader = new InputStreamReader(inputStream);
                 bufferedReader = new BufferedReader(inputStreamReader);
