@@ -10,12 +10,12 @@
 	String url_mysql = "jdbc:mysql://localhost/honey?serverTimezone=Asia/Seoul&characterEncoding=utf8&useSSL=false";
  	String id_mysql = "root";
  	String pw_mysql = "qwer1234";
+  String SET = "SET sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''))";
   String WhereDefault = "SELECT b.buyNum, b.buyDeliveryPrice, b.buyDay, b.buyCencelDay, i.iName, i.iCapacity, i.iUnit, count(*) "+
                         "FROM buy b LEFT JOIN ingredient i ON b.Ingredient_iCdoe = i.iCode "+
                         "WHERE Client_cId = '" + Client_cId + "' " +
                         "GROUP BY b.buyNum " +
                         "ORDER BY b.buyDay DESC, b.buyCencelDay DESC ";
-
     int count = 0;
 
     try {
@@ -23,6 +23,7 @@
         Connection conn_mysql = DriverManager.getConnection(url_mysql, id_mysql, pw_mysql);
         Statement stmt_mysql = conn_mysql.createStatement();
 
+        stmt_mysql.executeQuery(SET);
         ResultSet rs = stmt_mysql.executeQuery(WhereDefault);
 %>
 		{

@@ -17,7 +17,7 @@
 	    Connection conn_mysql = DriverManager.getConnection(url_mysql,id_mysql,pw_mysql);
 		  Statement stmt_mysql = conn_mysql.createStatement();
 
-	    String A = "update cart set cartDelDay = now() where cartDelDay is null AND Client_cId = ?";
+	    String A = "UPDATE cart c LEFT JOIN buy b ON c.cartCode = b.buyCartCode SET cartDelDay = now() WHERE c.Client_cId = ? AND c.cartDelDay is null AND b.buyCartCode is null";
 
       ps = conn_mysql.prepareStatement(A);
       ps.setString(1, Client_cId);
